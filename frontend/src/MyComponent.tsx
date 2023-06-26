@@ -20,7 +20,7 @@ class MyComponent extends StreamlitComponentBase<State> {
   public render = (): ReactNode => {
     const name = this.props.args["name"]
     const lastValue = localStorage.getItem(`hello_streamlit_component:${name}`)
-    if (lastValue) {
+    if (lastValue && lastValue !== this.state.currentValue) {
       this.setState(
         (prevState) => ({ ...prevState, currentValue: lastValue }),
         () => Streamlit.setComponentValue(this.state.currentValue)
